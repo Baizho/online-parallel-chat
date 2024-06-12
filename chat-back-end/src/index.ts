@@ -32,12 +32,17 @@ app.use(logger);
 app.use(express.json());
 app.use(globalRouter);
 
+const users = {};
+const typingUsers = {};
+
 io.on("connect", (socket) => {
   // console.log("a user connected");
   const fetchData = async () => {
     const res = await messageService.getMessages(); 
     // console.log("Fetching", res);
     socket.emit("messages", res);
+    socket.emit("onlineUsers", users);
+    socket.emit("typingUsers", typingUsers);
   }
   setInterval(() => {
     fetchData()
@@ -68,13 +73,36 @@ io.on("connect", (socket) => {
     const sendData = async () => {
       const res = await authService.loginUser(user.username, user.password);
       // console.log(res);
+      if(res !== null) {
+        // console.log(res.user.username);
+        users[res.user.username] = "online";
+        // console.log(users);
+      }
       socket.emit("checkLogin", res?.user.username);
     }
     sendData();
   })
-  
+
+  socket.on("removeTyping", (user) => {
+    delete typingUsers[user];
+  })
+  socket.on("addTyping", (user) => {
+    typingUsers[user] = "typing";
+  })
+
+  socket.on("disconnectingUser", (user) =>  {
+    // console.log("disconnect", user);
+    delete users[user];
+  });
   // it works? no
 });
+
+io.on("disconnect", (socket) => {
+  socket.on("disconnectingUser", (user) =>  {
+    console.log(user);
+    delete users[user];
+  });
+})
 
 server.listen(4000, () => {
   console.log("server running at http://localhost:4000");

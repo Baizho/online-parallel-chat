@@ -1,12 +1,24 @@
-import React from "react";
+"use client";
 
-type Props = {};
+import React, { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+
+type Props = {
+  onlineUsers: object;
+};
 
 const OnlineList = (props: Props) => {
   return (
     <div className="flex flex-col">
+      <div className="text-xl font-bold text-center">Online Users</div>
       <ul>
-        <li>Nurzik online</li>
+        {Object.keys(props.onlineUsers).map((user, index) => {
+          return (
+            <li key={index} className="pl-4 text-lg font-semibold">
+              {user}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

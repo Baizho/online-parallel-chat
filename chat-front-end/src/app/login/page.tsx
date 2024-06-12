@@ -28,6 +28,10 @@ const LoginPage = () => {
         router.push("/");
         setSuccess(1);
       }
+      const userPrev = window.localStorage.getItem("chat-user");
+      if (userPrev !== null && user !== userPrev) {
+        socket.emit("disconnectingUser", userPrev);
+      }
       window.localStorage.setItem("chat-user", user);
     });
   };
