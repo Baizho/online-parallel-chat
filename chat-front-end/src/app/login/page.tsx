@@ -4,13 +4,27 @@ import React, { createRef, useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
 
+import { io } from "socket.io-client";
+
 type Props = {};
 
 const LoginPage = () => {
+  const [success, setSuccess] = useState(-1);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
+    const socket = io("http://localhost:4000");
+    socket.emit("sendLogin", {
+      username: username,
+      password: password,
+    });
+    socket.on("checkLogin", (user) => {
+      // console.log(user);
+      if (user === null) setSuccess(0);
+      else setSuccess(1);
+      window.localStorage.setItem("chat-user", user);
+    });
   };
   return (
     <div className="min-h-screen">
@@ -66,6 +80,14 @@ const LoginPage = () => {
                 Sign in
               </button>
             </div>
+            {success === 0 && (
+              <div className="text-center text-red-500">
+                Try again (Maybe register)
+              </div>
+            )}
+            {success === 1 && (
+              <div className="text-center text-green-500">Success! </div>
+            )}
           </form>
         </div>
       </div>

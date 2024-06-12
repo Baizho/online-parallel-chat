@@ -4,13 +4,22 @@ import React, { createRef, useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
 
+import { io } from "socket.io-client";
+
 type Props = {};
 
 const RegisterPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // console.log("here");
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
+    // console.log(username, password);
+    const socket = io("http://localhost:4000");
+    socket.emit("sendRegister", {
+      username: username,
+      password: password,
+    });
   };
   return (
     <div className="min-h-screen">

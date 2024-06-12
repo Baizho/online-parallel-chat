@@ -24,7 +24,7 @@ class AuthController {
       const { email, password } = req.body;
       const result = await this.authService.loginUser(email, password);
       if (!result) {
-        res.status(401).json({ message: 'Invalid email or password' });
+        res.status(401).json({ message: 'Invalid username or password' });
         return;
       }
       res.status(200).json(result);
