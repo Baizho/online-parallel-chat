@@ -1,9 +1,6 @@
-export interface Event {
+export interface Message {
     id: number;
-    name: string;
-    description: string;
-    date:Date;
-    location:string;
-    duration:string;
+    user: string;
+    content: string;
   }
   
