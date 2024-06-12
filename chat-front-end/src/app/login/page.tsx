@@ -5,11 +5,13 @@ import { useState } from "react";
 import axios from "axios";
 
 import { io } from "socket.io-client";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const LoginPage = () => {
   const [success, setSuccess] = useState(-1);
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const username = e.currentTarget.username.value;
@@ -22,7 +24,10 @@ const LoginPage = () => {
     socket.on("checkLogin", (user) => {
       // console.log(user);
       if (user === null) setSuccess(0);
-      else setSuccess(1);
+      else {
+        router.push("/");
+        setSuccess(1);
+      }
       window.localStorage.setItem("chat-user", user);
     });
   };
