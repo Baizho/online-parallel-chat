@@ -16,7 +16,9 @@ const LoginPage = () => {
     e.preventDefault();
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
-    const socket = io("wss://online-parallel-chat.onrender.com/");
+    const socket = io("wss://online-parallel-chat.onrender.com/", {
+      transports: ["websocket"],
+    });
     socket.emit("sendLogin", {
       username: username,
       password: password,

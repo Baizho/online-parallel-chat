@@ -15,7 +15,9 @@ const RegisterPage = () => {
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
     // console.log(username, password);
-    const socket = io("wss://online-parallel-chat.onrender.com/");
+    const socket = io("wss://online-parallel-chat.onrender.com/", {
+      transports: ["websocket"],
+    });
     socket.emit("sendRegister", {
       username: username,
       password: password,
