@@ -16,7 +16,7 @@ const LoginPage = () => {
     e.preventDefault();
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
-    const socket = io("http://localhost:4000");
+    const socket = io("https://online-parallel-chat.vercel.app/");
     socket.emit("sendLogin", {
       username: username,
       password: password,

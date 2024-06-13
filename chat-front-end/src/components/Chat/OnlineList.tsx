@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 
 type Props = {
   onlineUsers: object;
