@@ -15,8 +15,9 @@ import AuthService from './auth/auth-service';
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors : {
-      origin: ["http://online-parallel-chat.onrender.com/", "http://localhost:3000"]
+  cors: {
+    origin: "*:*",
+    methods: ["GET", "POST"]
   }
 });
 const PORT = process.env.PORT;
