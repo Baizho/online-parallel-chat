@@ -52,7 +52,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("http://localhost:4000");
+      const socket = io("http://online-parallel-chat.onrender.com/");
       console.log(message);
       if (message.length === 0) {
         socket.emit("removeTyping", user);

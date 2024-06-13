@@ -16,7 +16,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors : {
-      origin: "https://online-parallel-chat-nghf.vercel.app"
+      origin: ["http://online-parallel-chat.onrender.com/", "http://localhost:3000"]
   }
 });
 const PORT = process.env.PORT;
@@ -46,7 +46,7 @@ io.on("connect", (socket) => {
   }
   setInterval(() => {
     fetchData()
-  }, 2000);
+  }, 1000);
   socket.on("sendMessage", (message) => {
     const sendData = async () => {
       const res = await messageService.createMessage({
