@@ -106,7 +106,7 @@ io.on("disconnect", (socket) => {
 })
 
 app.get("/", () => {
-  console.log("main page");
+  // console.log("main page");
 })
 
 server.listen(4000, () => {

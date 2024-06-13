@@ -32,7 +32,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("http://localhost:4000");
+      const socket = io("wss://");
       socket.emit("sendMessage", {
         username: user,
         message: message,
