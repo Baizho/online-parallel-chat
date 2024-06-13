@@ -32,7 +32,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("https://online-parallel-chat.vercel.app/");
+      const socket = io("http://localhost:4000");
       socket.emit("sendMessage", {
         username: user,
         message: message,
@@ -52,7 +52,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("https://online-parallel-chat.vercel.app/");
+      const socket = io("http://localhost:4000");
       console.log(message);
       if (message.length === 0) {
         socket.emit("removeTyping", user);
@@ -81,7 +81,7 @@ const home = (props: Props) => {
       }
       setCurUser(user);
     }
-    const socket = io("https://online-parallel-chat.vercel.app/");
+    const socket = io("http://localhost:4000");
 
     socket.on("connect", () => {
       console.log("connected");

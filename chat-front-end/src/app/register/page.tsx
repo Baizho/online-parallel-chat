@@ -15,7 +15,7 @@ const RegisterPage = () => {
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
     // console.log(username, password);
-    const socket = io("https://online-parallel-chat.vercel.app/");
+    const socket = io("http://localhost:4000");
     socket.emit("sendRegister", {
       username: username,
       password: password,

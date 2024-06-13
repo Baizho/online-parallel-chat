@@ -16,7 +16,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors : {
-      origin: "https://online-parallel-chat.vercel.app"
+      origin: "https://online-parallel-chat-nghf.vercel.app"
   }
 });
 const PORT = process.env.PORT;
