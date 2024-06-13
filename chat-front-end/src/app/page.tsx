@@ -32,7 +32,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("wss://");
+      const socket = io("wss://online-parallel-chat.onrender.com");
       socket.emit("sendMessage", {
         username: user,
         message: message,
@@ -52,7 +52,7 @@ const home = (props: Props) => {
       alert("login please");
       router.push("/login");
     } else {
-      const socket = io("http://localhost:4000");
+      const socket = io("wss://online-parallel-chat.onrender.com");
       console.log(message);
       if (message.length === 0) {
         socket.emit("removeTyping", user);
@@ -81,7 +81,7 @@ const home = (props: Props) => {
       }
       setCurUser(user);
     }
-    const socket = io("http://localhost:4000");
+    const socket = io("wss://online-parallel-chat.onrender.com");
 
     socket.on("connect", () => {
       console.log("connected");

@@ -14,12 +14,7 @@ import AuthService from './auth/auth-service';
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*:*",
-    methods: ["GET", "POST"]
-  }
-});
+const io = new Server(server);
 const PORT = process.env.PORT;
 
 const messageService = new MessageService();
