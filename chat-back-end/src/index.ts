@@ -104,6 +104,10 @@ io.on("disconnect", (socket) => {
   });
 })
 
+app.get("/", () => {
+  console.log("main page");
+})
+
 server.listen(4000, () => {
   console.log("server running at http://localhost:4000");
 });
