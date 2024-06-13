@@ -66,9 +66,10 @@ io.on("connect", (socket) => {
   })
 
   socket.on("sendLogin", (user) => {
+    console.log("sendLogin is here");
     const sendData = async () => {
       const res = await authService.loginUser(user.username, user.password);
-      // console.log(res);
+      console.log(res);
       if(res !== null) {
         // console.log(res.user.username);
         users[res.user.username] = "online";

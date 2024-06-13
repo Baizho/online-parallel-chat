@@ -57,7 +57,7 @@ const home = (props: Props) => {
       const socket = io("wss://online-parallel-chat.onrender.com", {
         transports: ["websocket"],
       });
-      console.log(message);
+      // console.log(message);
       if (message.length === 0) {
         socket.emit("removeTyping", user);
       } else {
