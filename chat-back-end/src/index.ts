@@ -32,7 +32,7 @@ const users = {};
 const typingUsers = {};
 
 io.on("connect", (socket) => {
-  // console.log("a user connected");
+  console.log("a user connected");
   const fetchData = async () => {
     const res = await messageService.getMessages(); 
     // console.log("Fetching", res);
@@ -88,7 +88,7 @@ io.on("connect", (socket) => {
   })
 
   socket.on("disconnectingUser", (user) =>  {
-    // console.log("disconnect", user);
+    console.log("disconnect", user);
     delete users[user];
   });
   // it works? no
